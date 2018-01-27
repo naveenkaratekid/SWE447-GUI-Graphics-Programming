@@ -11,8 +11,13 @@ function init() {
         return;
     }
     
+    do
+    {
+        
     cone = new Cone(gl, 100);
-
+    }
+    while(gl);
+    
     gl.clearColor( 1.0, 0.0, 0.0, 1.0 );
     render();
 }
