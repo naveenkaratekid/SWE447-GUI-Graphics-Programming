@@ -10,7 +10,8 @@ function init() {
         alert("Unable to setup WebGL");
         return;
     }
-    cone = new Cone(gl, 100, "Cone-vertex-shader", "Cone-fragment-shader");
+    
+    cone = new Cone(gl);
     gl.clearColor( 1.0, 0.0, 1.0, 1.0 );
 
     render();
