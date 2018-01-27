@@ -12,9 +12,8 @@ function init() {
     }
     
     do
-    {
-        
-    cone = new Cone(gl, 100);
+    { 
+        cone = new Cone(gl, 100);
     }
     while(gl);
     
