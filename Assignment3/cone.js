@@ -9,11 +9,11 @@ function init() {
     if ( !gl ) {
         alert("Unable to setup WebGL");
         return;
-    }        
+    }
+    
     cone = new Cone(gl, 100);
 
     gl.clearColor( 1.0, 0.0, 0.0, 1.0 );
-
     render();
 }
 
