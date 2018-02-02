@@ -11,11 +11,10 @@ function Square(gl, vertexShaderId, fragmentShaderId) {
     	return; 
 	}
 
-
 	gl.useProgram(this.program);
 	this.count = 24; // i am assuming that count is the number of vertices. there are 6 squares in a cube, so 4 vertices * 6 squares = 24 vertices
 	
-	/*
+	
 	this.positions = {
 		values : new Float32Array([
 		    // Front face
@@ -26,102 +25,21 @@ function Square(gl, vertexShaderId, fragmentShaderId) {
 		]),
 		numComponents : 2 // 3 components for each
 		// position (2D coords)
-	};*/
-	this.positions = {
-		values : new Float32Array([
-		    // Front face
-		     1.0, 1.0, 1.0, // Vertex 0
-		     1.0, -1.0, 1.0, // Vertex 1
-		    -1.0, -1.0, 1.0, // Vertex 2
-		    -1.0, 1.0, 1.0,  // Vertex 3
-		
-		    // Back face
-		     1.0, 1.0, -1.0, // Vertex 0
-		     1.0, -1.0, -1.0, // Vertex 1
-		    -1.0, -1.0, -1.0, // Vertex 2
-		    -1.0, 1.0, -1.0  // Vertex 3
+	};
 
-		    // Top face
-		     1.0, 1.0, 1.0, // Vertex 0
-		    -1.0, 1.0, 1.0, // Vertex 1
-		    -1.0, 1.0, -1.0, // Vertex 2
-		     1.0, 1.0, -1.0  // Vertex 3
-
-		    // Bottom face
-		     1.0, -1.0, 1.0, // Vertex 0
-		    -1.0, -1.0, 1.0, // Vertex 1
-		    -1.0, -1.0, -1.0, // Vertex 2
-		     1.0, -1.0, -1.0  // Vertex 3
-
-		    // Right face
-		     1.0, 1.0, -1.0, // Vertex 0
-		     1.0, -1.0, 1.0, // Vertex 1
-		    -1.0, -1.0, 1.0, // Vertex 2
-		    -1.0, 1.0, -1.0  // Vertex 3
-
-		    // Left face
-		    -1.0, 1.0, 1.0, // Vertex 0
-		    -1.0, 1.0, -1.0, // Vertex 1
-		    -1.0, -1.0, -1.0, // Vertex 2
-		    -1.0, -1.0, 1.0  // Vertex 3
-		]),
-		numComponents : 3 // 3 components for each
-		// position (3D coords)
-		};
-/*
-this.indicesClockwize1 = {
-    values : new Uint16Array([ 0, 3, 1 ])
-    };
-
-this.indicesClockwize2 = {
-    values : new Uint16Array([ 1, 3, 2 ])
-    };
-
-this.indicesCounterClockwise1 = {
-    values : new Uint16Array([ 0, 1, 3 ])
-    };
-
-this.indicesCounterClockwise2 = {
-    values : new Uint16Array([ 1, 2, 3 ])
-    };*/
-	
 	this.colors = {
 		values : new Float32Array([
 		    1.0, 0.0, 0.0, 
 		    1.0, 0.0, 0.0,
 		    1.0, 0.0, 0.0,
 		    1.0, 0.0, 0.0,
-			
-		    1.0, 0.0, 0.0, 
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-		
-		    1.0, 0.0, 0.0, 
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-		
-		    1.0, 0.0, 0.0, 
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-			
-		    1.0, 0.0, 0.0, 
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-			
-		    1.0, 0.0, 0.0, 
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0,
-		    1.0, 0.0, 0.0
+
 		]),
 		numComponents : 3 
 	};
     this.indices = {
-    values : new Uint16Array([0,1,2, 0,2,3, 4,5,6, 4,6,7, 8,9,10, 8,10,11, 12,13,14, 12,14,15, 16,17,18, 16,18,19, 20,21,22, 20,22,23])
-    //values : new Uint16Array([ 0, 1, 3, 2 ])
+    //values : new Uint16Array([0,1,2, 0,2,3, 4,5,6, 4,6,7, 8,9,10, 8,10,11, 12,13,14, 12,14,15, 16,17,18, 16,18,19, 20,21,22, 20,22,23])
+    values : new Uint16Array([ 0, 1, 3, 2 ])
     };
 	
 	// positions
