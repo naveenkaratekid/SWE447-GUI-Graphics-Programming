@@ -34,65 +34,39 @@ function Square(gl, vertexShaderId, fragmentShaderId) {
 		    0.5, -0.5, 0.5, // Vertex 1
 		    -0.5, -0.5, 0.5, // Vertex 2
 		    -0.5, 0.5, 0.5,  // Vertex 3
+		
+		    // Back face
+		    0.5, 0.5, -0.5, // Vertex 0
+		    0.5, -0.5, -0.5, // Vertex 1
+		    -0.5, -0.5, -0.5, // Vertex 2
+		    -0.5, 0.5, -0.5  // Vertex 3
+
+		    // Top face
+		    0.5, 0.5, 0.5, // Vertex 0
+		    -0.5, 0.5, 0.5, // Vertex 1
+		    -0.5, 0.5, -0.5, // Vertex 2
+		    0.5, 0.5, -0.5  // Vertex 3
+
+		    // Bottom face
+		    0.5, -0.5, 0.5, // Vertex 0
+		    -0.5, -0.5, 0.5, // Vertex 1
+		    -0.5, -0.5, -0.5, // Vertex 2
+		    0.5, -0.5, -0.5  // Vertex 3
+
+		    // Right face
+		    0.5, 0.5, -0.5, // Vertex 0
+		    0.5, -0.5, 0.5, // Vertex 1
+		    -0.5, -0.5, 0.5, // Vertex 2
+		    -0.5, 0.5, -0.5  // Vertex 3
+
+		    // Left face
+		    -0.5, 0.5, 0.5, // Vertex 0
+		    -0.5, 0.5, -0.5, // Vertex 1
+		    -0.5, -0.5, -0.5, // Vertex 2
+		    -0.5, -0.5, 0.5  // Vertex 3
 		]),
 		numComponents : 3 // 3 components for each
 		// position (3D coords)
-	};
-
-	this.positions2 = {
-			values : new Float32Array([
-			    // Back face
-			    0.5, 0.5, -0.5, // Vertex 0
-			    0.5, -0.5, -0.5, // Vertex 1
-			    -0.5, -0.5, -0.5, // Vertex 2
-			    -0.5, 0.5, -0.5  // Vertex 3
-			]),
-			numComponents : 3 // 3 components for each
-			// position (3D coords)
-		};
-	this.positions3 = {
-			values : new Float32Array([
-			    // Top face
-			    0.5, 0.5, 0.5, // Vertex 0
-			    -0.5, 0.5, 0.5, // Vertex 1
-			    -0.5, 0.5, -0.5, // Vertex 2
-			    0.5, 0.5, -0.5  // Vertex 3
-			]),
-			numComponents : 3 // 3 components for each
-			// position (3D coords)
-		};
-	this.positions4 = {
-			values : new Float32Array([
-			    // Bottom face
-			    0.5, -0.5, 0.5, // Vertex 0
-			    -0.5, -0.5, 0.5, // Vertex 1
-			    -0.5, -0.5, -0.5, // Vertex 2
-			    0.5, -0.5, -0.5  // Vertex 3
-			]),
-			numComponents : 3 // 3 components for each
-			// position (3D coords)
-		};
-	this.positions5 = {
-			values : new Float32Array([
-			    // Right face
-			    0.5, 0.5, -0.5, // Vertex 0
-			    0.5, -0.5, 0.5, // Vertex 1
-			    -0.5, -0.5, 0.5, // Vertex 2
-			    -0.5, 0.5, -0.5  // Vertex 3
-			]),
-			numComponents : 3 // 3 components for each
-			// position (3D coords)
-		};
-	this.positions6 = {
-			values : new Float32Array([
-			    // Left face
-			    -0.5, 0.5, 0.5, // Vertex 0
-			    -0.5, 0.5, -0.5, // Vertex 1
-			    -0.5, -0.5, -0.5, // Vertex 2
-			    -0.5, -0.5, 0.5  // Vertex 3
-			]),
-			numComponents : 3 // 3 components for each
-			// position (3D coords)
 		};
 
 this.indicesClockwize1 = {
