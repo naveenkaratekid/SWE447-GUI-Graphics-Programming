@@ -20,39 +20,39 @@ function Cube( vertexShaderId, fragmentShaderId ) {
         values : new Float32Array([
            // Add your list vertex positions here
              1.0,  1.0, 1.0, // Vertex 0
-		     1.0, -1.0, 1.0, // Vertex 1
-		    -1.0, -1.0, 1.0, // Vertex 2
-		    -1.0,  1.0, 1.0,  // Vertex 3
-		
-		    // Back face
-		     1.0,  1.0, -1.0, // Vertex 0
-		     1.0, -1.0, -1.0, // Vertex 1
-		    -1.0, -1.0, -1.0, // Vertex 2
-		    -1.0,  1.0, -1.0  // Vertex 3
+	     1.0, -1.0, 1.0, // Vertex 1
+	    -1.0, -1.0, 1.0, // Vertex 2
+	    -1.0,  1.0, 1.0,  // Vertex 3
 
-		    // Top face
-		     1.0, 1.0,  1.0, // Vertex 0
-		    -1.0, 1.0,  1.0, // Vertex 1
-		    -1.0, 1.0, -1.0, // Vertex 2
-		     1.0, 1.0, -1.0  // Vertex 3
+	    // Back face
+	     1.0,  1.0, -1.0, // Vertex 0
+	     1.0, -1.0, -1.0, // Vertex 1
+	    -1.0, -1.0, -1.0, // Vertex 2
+	    -1.0,  1.0, -1.0  // Vertex 3
 
-		    // Bottom face
-		     1.0, -1.0,  1.0, // Vertex 0
-		    -1.0, -1.0,  1.0, // Vertex 1
-		    -1.0, -1.0, -1.0, // Vertex 2
-		     1.0, -1.0, -1.0  // Vertex 3
+	    // Top face
+	     1.0, 1.0,  1.0, // Vertex 0
+	    -1.0, 1.0,  1.0, // Vertex 1
+	    -1.0, 1.0, -1.0, // Vertex 2
+	     1.0, 1.0, -1.0  // Vertex 3
 
-		    // Right face
-		     1.0,  1.0, -1.0, // Vertex 0
-		     1.0, -1.0,  1.0, // Vertex 1
-		    -1.0, -1.0,  1.0, // Vertex 2
-		    -1.0,  1.0, -1.0  // Vertex 3
+	    // Bottom face
+	     1.0, -1.0,  1.0, // Vertex 0
+	    -1.0, -1.0,  1.0, // Vertex 1
+	    -1.0, -1.0, -1.0, // Vertex 2
+	     1.0, -1.0, -1.0  // Vertex 3
 
-		    // Left face
-		    -1.0,  1.0,  1.0, // Vertex 0
-		    -1.0,  1.0, -1.0, // Vertex 1
-		    -1.0, -1.0, -1.0, // Vertex 2
-		    -1.0, -1.0,  1.0  // Vertex 3
+	    // Right face
+	     1.0,  1.0, -1.0, // Vertex 0
+	     1.0, -1.0,  1.0, // Vertex 1
+	    -1.0, -1.0,  1.0, // Vertex 2
+	    -1.0,  1.0, -1.0  // Vertex 3
+
+	    // Left face
+	    -1.0,  1.0,  1.0, // Vertex 0
+	    -1.0,  1.0, -1.0, // Vertex 1
+	    -1.0, -1.0, -1.0, // Vertex 2
+	    -1.0, -1.0,  1.0  // Vertex 3
             ]),
         numComponents : 3
     };
