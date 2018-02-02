@@ -68,7 +68,7 @@ function Square(gl, vertexShaderId, fragmentShaderId) {
 		numComponents : 3 // 3 components for each
 		// position (3D coords)
 		};
-
+/*
 this.indicesClockwize1 = {
     values : new Uint16Array([ 0, 3, 1 ])
     };
@@ -83,7 +83,7 @@ this.indicesCounterClockwise1 = {
 
 this.indicesCounterClockwise2 = {
     values : new Uint16Array([ 1, 2, 3 ])
-    };
+    };*/
 	
 	this.colors = {
 		values : new Float32Array([
@@ -95,7 +95,7 @@ this.indicesCounterClockwise2 = {
 		numComponents : 3 
 	};
     this.indices = {
-    values : new Uint16Array([ this.positions.values])
+    values : new Uint16Array([0,3,1,1,3,2,0,1,3,1,2,3])
     //values : new Uint16Array([ 0, 1, 3, 2 ])
     };
 	
