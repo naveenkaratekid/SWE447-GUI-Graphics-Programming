@@ -95,7 +95,7 @@ this.indicesCounterClockwise2 = {
 		numComponents : 3 
 	};
     this.indices = {
-    values : new Uint16Array([ 0,3,1,0,1,3])
+    values : new Uint16Array([ this.positions.values])
     //values : new Uint16Array([ 0, 1, 3, 2 ])
     };
 	
