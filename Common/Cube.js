@@ -54,7 +54,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
 	    -1.0, -1.0, -1.0, // Vertex 2
 	    -1.0, -1.0,  1.0  // Vertex 3
             ]),
-        numComponents : 3
+        numComponents : 2
     };
     
     this.indices = { 
