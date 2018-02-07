@@ -1,4 +1,3 @@
-
 function Cube( vertexShaderId, fragmentShaderId ) {
 
     // Initialize the shader pipeline for this object using either shader ids
@@ -17,55 +16,54 @@ function Cube( vertexShaderId, fragmentShaderId ) {
     }
 
     this.positions = { 
-        values : new Float32Array([
-	    // Front face
-	    -0.5, -0.5, 0.5, // Vertex 0
-	    0.5, -0.5, 0.5, // Vertex 1
-	    0.5, 0.5, 0.5, // Vertex 2
-	   - 0.5, 0.5, 0.5, // Vertex 3
-		
-		// Rear Face
-		-0.5,-0.5,-0.5 // Vertex 0
-		-0.5, 0.5,-0.5 // Vertex 1
-		0.5, 0.5,-0.5 // Vertex 2
-		0.5,-0.5,- 0.5 // Vertex 3
-		
-		// Top Face
-		-0.5, 0.5, -0.5 // Vertex 0
-		-0.5, 0.5, 0.5 // Vertex 1
-		0.5, 0.5, 0.5 // Vertex 2
-		0.5, 0.5, -0.5 // Vertex 3
-		
-		// Botton face
-		-0.5,-0.5,-0.5 // Vertex 0
-		0.5,-0.5,-0.5 // Vertex 1
-		0.5,-0.5, 0.5 // Vertex 2
-		-0.5,-0.5, 0.5 // Vertex 3
-		
-		// Right face
-		0.5,-0.5,-0.5 
-		0.5, 0.5,-0.5
-		0.5, 0.5, 0.5
-		0.5,-0.5, 0.5
-		
-		// Left Face
-		-0.5,-0.5,-0.5
-		-0.5,-0.5, 0.5
-		-0.5, 0.5, 0.5
-		-0.5, 0.5,-0.5
-		]),
-		numComponents : 3 
-	};
+        values: new Float32Array([
+           // Front face
+	  -0.5, -0.5,  0.5,
+	   0.5, -0.5,  0.5,
+	   0.5,  0.5,  0.5,
+	  -0.5,  0.5,  0.5,
+
+	  // Rear face
+	  -0.5, -0.5, -0.5,
+	  -0.5,  0.5, -0.5,
+	   0.5,  0.5, -0.5,
+	   0.5, -0.5, -0.5,
+
+	  // Top face
+	  -0.5,  0.5, -0.5,
+	  -0.5,  0.5,  0.5,
+	   0.5,  0.5,  0.5,
+	   0.5,  0.5, -0.5,
+
+	  // Bottom face
+	  -0.5, -0.5, -0.5,
+	   0.5, -0.5, -0.5,
+	   0.5, -0.5,  0.5,
+	  -0.5, -0.5,  0.5,
+
+	  // Right face
+	   0.5, -0.5, -0.5,
+	   0.5,  0.5, -0.5,
+	   0.5,  0.5,  0.5,
+	   0.5, -0.5,  0.5,
+
+	  // Left face
+	  -0.5, -0.5, -0.5,
+	  -0.5, -0.5,  0.5,
+	  -0.5,  0.5,  0.5,
+	  -0.5,  0.5, -0.5
+            ]),
+        numComponents : 3
+    };
     
     this.indices = { 
         values : new Uint16Array([
-            0, 2, 1,    0, 3, 2
-	    4, 6, 5,    4, 7, 6
-	    8, 10, 9,   8, 11, 10,   // top
-    	    12, 14, 13, 12, 15, 14,   // bottom
-    	    16, 18, 17, 16, 19, 18,   // right
-    	    20, 22, 21, 20, 23, 22   // left
-            // Add your list of triangle indices here
+        0,  2,  1,  0,  3,  2,    // front face
+    	4,  6,  5,  4,  7,  6,    // back face
+    	8,  10,  9, 8,  11, 10,   // top face
+    	12, 14, 13, 12, 15, 14,   // bottom face
+    	16, 18, 17, 16, 19, 18,   // right face
+    	20, 22, 21, 20, 23, 22   // left face
         ])
     };
     this.indices.count = this.indices.values.length;
