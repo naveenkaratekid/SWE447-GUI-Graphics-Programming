@@ -59,7 +59,12 @@ function Cube( vertexShaderId, fragmentShaderId ) {
     
     this.indices = { 
         values : new Uint16Array([
-            0,3,1, 1,3,2, 0,1,3, 1,2,3
+            0, 2, 1,    0, 3, 2
+	    4, 6, 5,    4, 7, 6
+	    8, 10, 9,   8, 11, 10,   // top
+    	    12, 14, 13, 12, 15, 14,   // bottom
+    	    16, 18, 17, 16, 19, 18,   // right
+    	    20, 22, 21, 20, 23, 22   // left
             // Add your list of triangle indices here
         ])
     };
