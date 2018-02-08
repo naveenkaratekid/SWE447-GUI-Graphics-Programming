@@ -58,8 +58,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
     
     this.colors = 
     {
-	values : new Float32Array
-	  ([
+	values : new Float32Array([
 		// Front
 		0.0, 0.6, 1.0,
 		0.0, 0.6, 1.0,
