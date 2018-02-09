@@ -15,8 +15,8 @@ function Cube( vertexShaderId, fragmentShaderId ) {
         return; 
     }
 
-   this.positions = { 
-        values: new Float32Array([
+    this.positions = { 
+        values : new Float32Array([
            // Front face
 	  -0.5, -0.5,  0.5,
 	   0.5, -0.5,  0.5,
@@ -55,7 +55,6 @@ function Cube( vertexShaderId, fragmentShaderId ) {
             ]),
         numComponents : 3
     };
-    
     this.colors = 
     {
 	values : new Float32Array([
