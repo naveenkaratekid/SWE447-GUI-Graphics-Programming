@@ -20,7 +20,7 @@ var Planets = {
   Sun : undefined,
   // Mercury : undefined,
   // Venus : undefined,
-  // Earth : undefined,
+  Earth : undefined,
   // Moon : undefined,
   // Mars : undefined,
   // Jupiter : undefined,
@@ -118,6 +118,10 @@ function render() {
   var name, planet, data;
 
   name = "Sun";
+  planet = Planets[name];
+  data = SolarSystem[name];
+  
+  name = "Earth";
   planet = Planets[name];
   data = SolarSystem[name];
   
