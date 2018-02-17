@@ -20,7 +20,7 @@ var Planets = {
   Sun : undefined,
   // Mercury : undefined,
   // Venus : undefined,
-  //Earth : undefined,
+  Earth : undefined,
   // Moon : undefined,
   // Mars : undefined,
   // Jupiter : undefined,
@@ -121,6 +121,10 @@ function render() {
   planet = Planets[name];
   data = SolarSystem[name];
  
+  
+  name = "Earth";
+  planet = Planets[name];
+  data = SolarSystem[name];
   
   // Set PointMode to true to render all the vertices as points, as
   // compared to filled triangles.  This can be useful if you think
