@@ -119,21 +119,10 @@ function render() {
   var name2, planet2, data2;
   var name3, planet3, data3;
   
-  
+  // Sun
   name = "Sun";
   planet = Planets[name];
   data = SolarSystem[name];
- 
-  planet.PointMode = true;
-  
-  name2 = "Earth";
-  planet2 = Planets[name2];
-  data2 = SolarSystem[name2]; 
-  
-  
-  name3 = "Moon";
-  planet3 = Planets[name3];
-  data3 = SolarSystem[name3];
   
   // Set PointMode to true to render all the vertices as points, as
   // compared to filled triangles.  This can be useful if you think
@@ -141,15 +130,13 @@ function render() {
   // "planet" variable is set for each object, you will need to set this
   // for each planet separately.
 
-  planet.PointMode = false;
- // planet.PointMode = true;
+  planet.PointMode = true;
 
   // Use the matrix stack to configure and render a planet.  How you rener
   // each planet will be similar, but not exactly the same.  In particular,
   // here, we're only rendering the Sun, which is the center of the Solar
   // system (and hence, has no translation to its location).
 
-  // Sun
   ms.push();
   ms.scale(data.radius);
   gl.useProgram(planet.program);
@@ -159,21 +146,33 @@ function render() {
   planet.render();
   ms.pop();
 
-  planet.PointMode = true;
-  
+	 //
+  //  Add your code for more planets here!
+  //
+  //var name2, planet2, data2;  
+	
   // Earth
+  name2 = "Earth";
+  planet2 = Planets[name2];
+  data2 = SolarSystem[name2];
+ 
+	
+  planet.PointMode = false;
+	
   ms.push();
   ms.scale(data2.radius);
   gl.useProgram(planet2.program);
   gl.uniformMatrix4fv(planet2.uniforms.MV, false, flatten(ms.current()));
   gl.uniformMatrix4fv(planet2.uniforms.P, false, flatten(P));
-  gl.uniform4fv(planetw.uniforms.color, flatten(data2.color));
+  gl.uniform4fv(planet2.uniforms.color, flatten(data2.color));
   planet2.render();
   ms.pop();
   
-  planet2.PointMode = true;
-  
   // Moon
+  name3 = "Moon";
+  planet3 = Planets[name3];
+  data3 = SolarSystem[name3];
+  
   ms.push();
   ms.scale(data3.radius);
   gl.useProgram(planet3.program);
@@ -183,11 +182,6 @@ function render() {
   planet3.render();
   ms.pop();
   
-  planet3.PointMode = true;
-  //
-  //  Add your code for more planets here!
-  //
-
   window.requestAnimationFrame(render);
 }
 
