@@ -124,6 +124,7 @@ function render() {
   planet = Planets[name];
   data = SolarSystem[name];
  
+  planet.PointMode = true;
   
   name2 = "Earth";
   planet2 = Planets[name2];
@@ -140,8 +141,8 @@ function render() {
   // "planet" variable is set for each object, you will need to set this
   // for each planet separately.
 
-  //planet.PointMode = false;
-  planet.PointMode = true;
+  planet.PointMode = false;
+ // planet.PointMode = true;
 
   // Use the matrix stack to configure and render a planet.  How you rener
   // each planet will be similar, but not exactly the same.  In particular,
@@ -158,6 +159,8 @@ function render() {
   planet.render();
   ms.pop();
 
+  planet.PointMode = true;
+  
   // Earth
   ms.push();
   ms.scale(data2.radius);
@@ -168,6 +171,8 @@ function render() {
   planet2.render();
   ms.pop();
   
+  planet2.PointMode = true;
+  
   // Moon
   ms.push();
   ms.scale(data3.radius);
@@ -177,6 +182,8 @@ function render() {
   gl.uniform4fv(planet3.uniforms.color, flatten(data3.color));
   planet3.render();
   ms.pop();
+  
+  planet3.PointMode = true;
   //
   //  Add your code for more planets here!
   //
