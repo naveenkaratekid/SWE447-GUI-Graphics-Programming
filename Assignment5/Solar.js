@@ -117,7 +117,7 @@ function render() {
 
   var name, planet, data;
   var name2, planet2, data2;
-  var name2, planet3, data3;
+  var name3, planet3, data3;
   
   
   name = "Sun";
@@ -163,7 +163,7 @@ function render() {
   ms.scale(data2.radius);
   gl.useProgram(planet2.program);
   gl.uniformMatrix4fv(planet2.uniforms.MV, false, flatten(ms.current()));
-  gl.uniformMatrix4fv(planetw.uniforms.P, false, flatten(P));
+  gl.uniformMatrix4fv(planet2.uniforms.P, false, flatten(P));
   gl.uniform4fv(planetw.uniforms.color, flatten(data2.color));
   planet2.render();
   ms.pop();
