@@ -148,6 +148,7 @@ function render() {
   // here, we're only rendering the Sun, which is the center of the Solar
   // system (and hence, has no translation to its location).
 
+  // Sun
   ms.push();
   ms.scale(data.radius);
   gl.useProgram(planet.program);
@@ -157,6 +158,25 @@ function render() {
   planet.render();
   ms.pop();
 
+  // Earth
+  ms.push();
+  ms.scale(data2.radius);
+  gl.useProgram(planet2.program);
+  gl.uniformMatrix4fv(planet2.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(planetw.uniforms.P, false, flatten(P));
+  gl.uniform4fv(planetw.uniforms.color, flatten(data2.color));
+  planet2.render();
+  ms.pop();
+  
+  // Moon
+  ms.push();
+  ms.scale(data3.radius);
+  gl.useProgram(planet3.program);
+  gl.uniformMatrix4fv(planet3.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(planet3.uniforms.P, false, flatten(P));
+  gl.uniform4fv(planet3.uniforms.color, flatten(data3.color));
+  planet3.render();
+  ms.pop();
   //
   //  Add your code for more planets here!
   //
