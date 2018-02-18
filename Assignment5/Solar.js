@@ -21,7 +21,7 @@ var Planets = {
   // Mercury : undefined,
   // Venus : undefined,
   Earth : undefined,
-  // Moon : undefined,
+  Moon : undefined,
   // Mars : undefined,
   // Jupiter : undefined,
   // Saturn : undefined,
@@ -116,15 +116,23 @@ function render() {
   // used; it'll simplify the work you need to do.
 
   var name, planet, data;
-
+  var name2, planet2, data2;
+  var name2, planet3, data3;
+  
+  
   name = "Sun";
   planet = Planets[name];
   data = SolarSystem[name];
  
   
-  name = "Earth";
-  planet = Planets[name];
-  data = SolarSystem[name];
+  name2 = "Earth";
+  planet2 = Planets[name2];
+  data2 = SolarSystem[name2]; 
+  
+  
+  name3 = "Moon";
+  planet3 = Planets[name3];
+  data3 = SolarSystem[name3];
   
   // Set PointMode to true to render all the vertices as points, as
   // compared to filled triangles.  This can be useful if you think
@@ -132,7 +140,8 @@ function render() {
   // "planet" variable is set for each object, you will need to set this
   // for each planet separately.
 
-  planet.PointMode = false;
+  //planet.PointMode = false;
+  planet.PointMode = true;
 
   // Use the matrix stack to configure and render a planet.  How you rener
   // each planet will be similar, but not exactly the same.  In particular,
