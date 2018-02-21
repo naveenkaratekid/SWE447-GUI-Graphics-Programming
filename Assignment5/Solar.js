@@ -161,7 +161,7 @@ function render() {
 	
   ms.push();
   ms.rotate(time/data.getYear, [0,1,0]);
-  ms.translate(data.distance, 0,0);
+  ms.translate(data.distance * 10, 0,0);
   ms.scale(data.radius);
   gl.useProgram(planet.program);
   gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
