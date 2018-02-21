@@ -170,7 +170,7 @@ function render() {
   gl.uniform4fv(planet2.uniforms.color, flatten(data2.color));
   
   planet2.render();
-  ms.pop();
+  //ms.pop();
   
   // Moon
   name3 = "Moon";
@@ -186,6 +186,7 @@ function render() {
   gl.uniformMatrix4fv(planet3.uniforms.P, false, flatten(P));
   gl.uniform4fv(planet3.uniforms.color, flatten(data3.color));
   planet3.render();
+  ms.pop();
   ms.pop();
   
   window.requestAnimationFrame(render);
