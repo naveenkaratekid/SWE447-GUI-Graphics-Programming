@@ -135,6 +135,7 @@ function render() {
   // here, we're only rendering the Sun, which is the center of the Solar
   // system (and hence, has no translation to its location).
 
+  // We are pushing: Sun ->push-> Earth->Push->Moon<-Pop<-Earth
   ms.push();
   ms.rotate(time/data.getYear, [0,1,0]);
   ms.translate(data.distance, 0,0);
