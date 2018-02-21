@@ -116,9 +116,7 @@ function render() {
   // used; it'll simplify the work you need to do.
 
   var name, planet, data;
-  var name2, planet2, data2;
-  var name3, planet3, data3;
-  
+ 
   // Sun
   name = "Sun";
   planet = Planets[name];
@@ -138,6 +136,8 @@ function render() {
   // system (and hence, has no translation to its location).
 
   ms.push();
+  ms.rotate(time/data.getYear, [0,1,0]);
+  ms.translate(data.distance, 0,0);
   ms.scale(data.radius);
   gl.useProgram(planet.program);
   gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
@@ -153,39 +153,41 @@ function render() {
   //var name2, planet2, data2;  
 	
   // Earth
-  name2 = "Earth";
-  planet2 = Planets[name2];
-  data2 = SolarSystem[name2];
+  name = "Earth";
+  planet = Planets[name];
+  data = SolarSystem[name];
  
 	
   planet.PointMode = false;
 	
   ms.push();
-  ms.scale(data2.radius);
-  ms.rotate(time/data2/getYear, [0,1,0]);
-  ms.translate(data2.distance, 0,0);
-  gl.useProgram(planet2.program);
-  gl.uniformMatrix4fv(planet2.uniforms.MV, false, flatten(ms.current()));
-  gl.uniformMatrix4fv(planet2.uniforms.P, false, flatten(P));
-  gl.uniform4fv(planet2.uniforms.color, flatten(data2.color));
+  ms.rotate(time/data.getYear, [0,1,0]);
+  ms.translate(data.distance, 0,0);
+  ms.scale(data.radius);
+  gl.useProgram(planet.program);
+  gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(planet.uniforms.P, false, flatten(P));
+  gl.uniform4fv(planet.uniforms.color, flatten(data.color));
   
-  planet2.render();
+  planet.render();
   //ms.pop();
   
   // Moon
-  name3 = "Moon";
-  planet3 = Planets[name3];
-  data3 = SolarSystem[name3];
+  name = "Moon";
+  planet = Planets[name];
+  data = SolarSystem[name];
   
   planet.PointMode = false;	
   
   ms.push();
-  ms.scale(data3.radius);
-  gl.useProgram(planet3.program);
-  gl.uniformMatrix4fv(planet3.uniforms.MV, false, flatten(ms.current()));
-  gl.uniformMatrix4fv(planet3.uniforms.P, false, flatten(P));
-  gl.uniform4fv(planet3.uniforms.color, flatten(data3.color));
-  planet3.render();
+  ms.rotate(time/data.getYear, [0,1,0]);
+  ms.translate(data.distance, 0,0);
+  ms.scale(data.radius);
+  gl.useProgram(planet.program);
+  gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(planet.uniforms.P, false, flatten(P));
+  gl.uniform4fv(planet.uniforms.color, flatten(data.color));
+  planet.render();
   ms.pop();
   ms.pop();
   
