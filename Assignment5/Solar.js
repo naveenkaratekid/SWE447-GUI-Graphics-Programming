@@ -135,7 +135,7 @@ function render() {
   // here, we're only rendering the Sun, which is the center of the Solar
   // system (and hence, has no translation to its location).
 
-  // We are pushing: Sun ->push-> Earth->Push->Moon<-Pop<-Earth
+  // We are pushing: Sun ->push-> Earth Moon<-Pop<-Earth
   ms.push();
   ms.scale(data.radius);
   gl.useProgram(planet.program);
@@ -178,7 +178,7 @@ function render() {
   
   planet.PointMode = false;	
   
-  ms.push();
+  //ms.push();
   ms.rotate(time/data.getYear, [0,1,0]);
   ms.translate(data.distance, 0,0);
   ms.scale(data.radius);
@@ -188,7 +188,7 @@ function render() {
   gl.uniform4fv(planet.uniforms.color, flatten(data.color));
   planet.render();
   ms.pop();
-  ms.pop();
+  //ms.pop();
   
   window.requestAnimationFrame(render);
 }
