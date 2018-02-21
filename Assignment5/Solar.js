@@ -95,7 +95,7 @@ function init() {
 
 function render() {
   time += timeDelta;
-
+  var rotationAxis = [0,0,1];
   var ms = new MatrixStack();
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -155,7 +155,7 @@ function render() {
   planet.PointMode = false;
 	
   ms.push();
-  ms.rotate(time/data.getYear, [0,1,0]);
+  ms.rotate((360/data.year)*time, rotationAxis);
   ms.translate(data.distance * 10, 0,0);
   ms.scale(data.radius);
   gl.useProgram(planet.program);
@@ -171,8 +171,7 @@ function render() {
   data = SolarSystem[name];
   
   planet.PointMode = false;	
-  
-  ms.rotate(time/data.getYear, [0,1,0]);
+  ms.rotate(time/data.year, rotationAxis);
   ms.translate(data.distance, 0,0);
   ms.scale(data.radius);
   gl.useProgram(planet.program);
