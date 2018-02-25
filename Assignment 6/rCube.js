@@ -1,4 +1,3 @@
-
 var mixedTextures = 0; // 1 to have 6 different images (one per face of the cube)
 
 function Cube(gl, vertexShaderId, fragmentShaderId) {
@@ -55,6 +54,40 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
 		numComponents : 3 // 3 components for each
 		// position (3D coords)
 	};
+	/*this.colors = {
+		values : new Float32Array([
+		    1.0, 1.0, 1.0, 1.0,    // Front face: white
+		    1.0, 1.0, 1.0, 1.0,    // Front face: white
+		    1.0, 1.0, 1.0, 1.0,    // Front face: white
+		    1.0, 1.0, 1.0, 1.0,    // Front face: white
+		    
+		    1.0, 0.0, 0.0, 1.0,    // Back face: red
+		    1.0, 0.0, 0.0, 1.0,    // Back face: red
+		    1.0, 0.0, 0.0, 1.0,    // Back face: red
+		    1.0, 0.0, 0.0, 1.0,    // Back face: red
+		    
+		    0.0, 1.0, 0.0, 1.0,    // Top face: green
+		    0.0, 1.0, 0.0, 1.0,    // Top face: green
+		    0.0, 1.0, 0.0, 1.0,    // Top face: green
+		    0.0, 1.0, 0.0, 1.0,    // Top face: green
+		    
+		    0.0, 0.0, 1.0, 1.0,    // Bottom face: blue
+		    0.0, 0.0, 1.0, 1.0,    // Bottom face: blue
+		    0.0, 0.0, 1.0, 1.0,    // Bottom face: blue
+		    0.0, 0.0, 1.0, 1.0,    // Bottom face: blue
+		    
+		    1.0, 1.0, 0.0, 1.0,    // Right face: yellow
+		    1.0, 1.0, 0.0, 1.0,    // Right face: yellow
+		    1.0, 1.0, 0.0, 1.0,    // Right face: yellow
+		    1.0, 1.0, 0.0, 1.0,    // Right face: yellow
+		    
+		    1.0, 0.0, 1.0, 1.0,     // Left face: purple
+		    1.0, 0.0, 1.0, 1.0,     // Left face: purple
+		    1.0, 0.0, 1.0, 1.0,     // Left face: purple
+		    1.0, 0.0, 1.0, 1.0     // Left face: purple
+		]),
+		numComponents : 4 
+	};*/
 	
 	this.indices = {
 		values : new Uint16Array([ 
@@ -168,7 +201,6 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
 	gl.bindBuffer( gl.ARRAY_BUFFER, this.colors.buffer );
 	//gl.bufferData( gl.ARRAY_BUFFER, new Float32Array(this.colors.values), gl.STATIC_DRAW );
     gl.bufferData( gl.ARRAY_BUFFER, this.colors.values, gl.STATIC_DRAW );
-
 	this.colors.attributeLoc = gl.getAttribLocation( this.program, "vColor" );
 	gl.enableVertexAttribArray( this.colors.attributeLoc );*/
 
@@ -178,10 +210,6 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
     this.initTexture();
     //this.texture = loadTexture(gl, "/home/saeid/Projects/WebGL/webgl-examples/tutorial/Mysample6/cubetexture.png");
     //texture = loadTexture(gl, "cubetexture.png");
-    //texture = loadTexture(gl, "noodles.png");
-    //texture = loadTexture(gl, "monkey.png");
-
-    
     
     this.textures.buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.textures.buffer);
@@ -255,4 +283,3 @@ handleLoadedTexture = function (image, texture) {
 function isPowerOf2(value) {
   return (value & (value - 1)) == 0;
 }
-
