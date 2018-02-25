@@ -177,9 +177,9 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
     // Texture
     this.initTexture();
     //this.texture = loadTexture(gl, "/home/saeid/Projects/WebGL/webgl-examples/tutorial/Mysample6/cubetexture.png");
-    texture = loadTexture(gl, "cubetexture.png");
-    texture = loadTexture(gl, "noodles.png");
-    texture = loadTexture(gl, "monkey.png");
+    //texture = loadTexture(gl, "cubetexture.png");
+    //texture = loadTexture(gl, "noodles.png");
+    //texture = loadTexture(gl, "monkey.png");
 
     
     
