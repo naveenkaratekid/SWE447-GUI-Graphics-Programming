@@ -209,8 +209,7 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
     // Texture
     this.initTexture();
     //this.texture = loadTexture(gl, "/home/saeid/Projects/WebGL/webgl-examples/tutorial/Mysample6/cubetexture.png");
-    texture = loadTexture(gl, "cubetexture.png");
-
+    //texture = loadTexture(gl, "cubetexture.png");
     
     this.textures.buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.textures.buffer);
