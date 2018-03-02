@@ -1,5 +1,14 @@
 var gl = null;
 var cone = null;
+var P, V; // P is for the projection transformation, and V is for the viewing transformation
+
+var far = 120;
+var near = 10;
+
+var t = 0.0;
+var tDelta = 0.0001;
+
+
 function init() {
     var canvas = document.getElementById( "webgl-canvas" );
     
@@ -11,7 +20,14 @@ function init() {
         return;
     }
 
-    cone = new Cone(gl, 100);
+    cone = new Cone(gl, 50);
+    
+    cone.uniforms = 
+    {
+        P: gl.getUniformLocation(cone.program, "P");
+        MV: gl.getUniformLocation(cone.program, "MV");
+        
+    }
     
     //gl.clearColor( 1.0, 0.0, 1.0, 1.0 );
     gl.clearColor( 0.0, 0.0, 1.0, 1.0 );
@@ -19,8 +35,30 @@ function init() {
 }
 
 function render() {
-    gl.clear( gl.COLOR_BUFFER_BIT );
+    t += tDelta;
+    var mStack = new MatrixStack();
+    var rotationAxis = [0,1,1]; // Rotate along y and z
+    gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    
+    V = translate(0.0,0.0, -0.5 * (near + far));
+    m.load(V);
+    
+    var c2 = cone;
+    
+    //gl.clear( gl.COLOR_BUFFER_BIT );
     cone.render();
+    ms.push();
+    m.scale(0.5)
+    m.rotate(25, rotationAxis);
+    
+    gl.useProgram(c2.program);
+    gl.uniformMatrix4fv(c2.uniforms.MV, false, flatten(m.current()));
+    gl.uniformMatrix4fv(c2.uniforms.P, false, flatten(P));
+    
+    c2.render();
+    ms.pop();
+    
+    window.requestAnimationFrame(render);
 }
 
 window.onload = init;
