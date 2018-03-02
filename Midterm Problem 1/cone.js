@@ -41,18 +41,18 @@ function render() {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
     V = translate(0.0,0.0, -0.5 * (near + far));
-    m.load(V);
+    mStack.load(V);
     
     var c2 = cone;
     
     //gl.clear( gl.COLOR_BUFFER_BIT );
     cone.render();
-    ms.push();
-    m.scale(0.5)
-    m.rotate(25, rotationAxis);
-    
+    mStack.push();
+    mStack.scale(0.5)
+    mStack.rotate(25, rotationAxis);
+    console.log(mStack.current());
     gl.useProgram(c2.program);
-    gl.uniformMatrix4fv(c2.uniforms.MV, false, flatten(m.current()));
+    gl.uniformMatrix4fv(c2.uniforms.MV, false, flatten(mStack.current()));
     gl.uniformMatrix4fv(c2.uniforms.P, false, flatten(P));
     
     c2.render();
