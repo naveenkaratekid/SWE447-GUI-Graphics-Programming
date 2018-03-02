@@ -48,8 +48,6 @@ function init() {
             dAngle = 2.0;
             stoprotating = 0;
         }
-        
-
     }    
     
     document.getElementById("xButton").onclick = function() {
@@ -59,7 +57,6 @@ function init() {
     
     document.getElementById("yButton").onclick = function() {
         rotationAxis = yAxis;
-
     }    
     
     document.getElementById("slider").onchange = function(event) {
@@ -76,22 +73,21 @@ function init() {
         mouseDown = false;
         if (stoprotating) dAngle = 0.0;
         return;
-
     }
 
     document.onmousemove = function handleMouseMove(event) {
-    if (!mouseDown) {
-      if(stoprotating) dAngle = 0.0;
-      return;
-    }
-    var newX = event.clientX;
-    var newY = event.clientY;
+		if (!mouseDown) {
+		  if(stoprotating) dAngle = 0.0;
+		  return;
+		}
+		var newX = event.clientX;
+		var newY = event.clientY;
 
-    var deltaX = newX - lastMouseX;
-    var deltaY = newY - lastMouseY;
-    dAngle = degToRad(deltaX + deltaY) * Math.PI * 5;
-    lastMouseX = newX;
-    lastMouseY = newY;
+		var deltaX = newX - lastMouseX;
+		var deltaY = newY - lastMouseY;
+		dAngle = degToRad(deltaX + deltaY) * Math.PI * 5;
+		lastMouseX = newX;
+		lastMouseY = newY;
     }   
 
 
@@ -106,8 +102,7 @@ function init() {
             case 40 : offset = [ 0.0,  -3.0, 0.0 ]; break; // Down cursor key
             case 27 : offset = [ 0.0,  0.0, 0.0 ]; dAngle = 0; break; // Esc key
             default : /*alert("You pressed the key code = " + mkey);*/ break;
-        }
-    
+        }    
     }    
 
     gl.clearColor( 0.0, 0.0, 0.0, 1.0 );
