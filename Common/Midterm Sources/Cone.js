@@ -100,7 +100,8 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
   	this.MV = mat4(); // or undefined
   	this.P = mat4();
 
-    this.render = function () {
+    this.render = function () 
+    {
         gl.useProgram( this.program );
 
         gl.bindBuffer( gl.ARRAY_BUFFER, this.positions.buffer ); // BYTES PER ELEMENT represents the size of each element in an array in bytes
@@ -111,8 +112,8 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
  
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
 				
-		gl.uniformMatrix4fv( this.uniforms.MV, gl.FALSE, flatten(this.MV) );
-		gl.uniformMatrix4fv( this.uniforms.P, gl.FALSE, flatten(this.P) );
+	gl.uniformMatrix4fv( this.uniforms.MV, gl.FALSE, flatten(this.MV) );
+	gl.uniformMatrix4fv( this.uniforms.P, gl.FALSE, flatten(this.P) );
 		
         // Draw the cone's base
         //
