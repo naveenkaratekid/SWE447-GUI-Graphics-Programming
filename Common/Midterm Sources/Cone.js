@@ -96,24 +96,23 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
     this.P = mat4();
     
     this.render = function () {
-        gl.useProgram( this.program );
+       gl.useProgram( this.program );
 
         gl.bindBuffer( gl.ARRAY_BUFFER, this.positions.buffer );
-        gl.vertexAttribPointer( this.positions.attributeLoc, this.positions.numComponents,
-            gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0 );
-        
-        gl.bindBuffer( gl.ARRAY_BUFFER, this.colorVals.buffer );
-        gl.vertexAttribPointer( this.colorVals.attributeLoc, this.colorVals.buffer,
-            gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0 );
+        gl.vertexAttribPointer( this.positions.attributeLoc, this.positions.numComponents, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0 );
+		
+		gl.bindBuffer( gl.ARRAY_BUFFER, this.colors.buffer );
+        gl.vertexAttribPointer( this.colors.attributeLoc, this.colors.numComponents, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0 );
  
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
-        gl.uniformMatrix4fv(this.uniforms.P, gl.FALSE, flatten(this.P));
-        gl.uniformMatrix4fv(this.uniforms.MV, gl.FALSE, flatten(this.MV));
-       
+				
+		gl.uniformMatrix4fv( this.uniforms.MV, gl.FALSE, flatten(this.MV) );
+		gl.uniformMatrix4fv( this.uniforms.P, gl.FALSE, flatten(this.P) );
+		
         // Draw the cone's base
         //
         gl.drawElements( gl.TRIANGLE_FAN, this.indices.count, gl.UNSIGNED_SHORT, 0 );
-
+		
         // Draw the cone's top
         //
         var offset = this.indices.count * 2 /* sizeof(UNSIGNED_INT) */;
