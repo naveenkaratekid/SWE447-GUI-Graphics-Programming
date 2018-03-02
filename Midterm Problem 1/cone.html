@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="../Common/Midterm Sources/initShaders.js"></script>
-  <script src="../Common/Midterm Sources/MatrixStack.js"></script>  
-  <script src="../Common/Midterm Sources/webgl-utils.js"></script>
-  <script src="../Common/Midterm Sources/Cone.js"></script>
-  <script src="../Common/Midterm Sources/MV.js"></script>
-  <script src="cone.js"></script> 
- 
-  <script id = "Cone-vertex-shader" type="x-shader/x-vertex">
-  attribute vec4 vPosition;
-  attribute vec3 color;
-  varying vec4 colorF;
-  uniform mat4 MV;
-  uniform mat4 P;
-  void main() 
-  {
-       gl_PointSize = 5.0;
-       gl_Position = MV * P * vPosition;
-       colorF = vec4(color, 1.0);
-  }
-  </script>
-  
-  <script id = "Cone-fragment-shader" type="x-shader/x-fragment">
-  precision highp float;
-  
-  void main()
-  {
-      gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-      
-  }
-  </script>
-  
-</head>
-<body>
-<canvas id="webgl-canvas" width="512" height="512" style="background-color: #0000FF"></canvas>
-<div>
-speed 0% <input id="slider" type="range" min="0" max="100" step="10" value="10" />100%
-<button id="xButton">Rotate X</button>
-<button id="yButton">Rotate Y</button>
-<input type="checkbox" id = "cBox" name = "rotspeed" value="0">stop rotating<br>
-</div>
+	<head>
+		<meta charset="utf-8">
+		<script src="../Common/Midterm Sources/webgl-utils.js"></script>
+		<script src="../Common/Midterm Sources/initShaders.js"></script>
+		<script src="../Common/Midterm Sources/MV.js"></script>
+		<script src="../Common/Midterm Sources/MatrixStack.js"></script>
+		<script src="../Common/Midterm Sources/Cone.js"></script>
+		<script src="cone.js"></script>
+	  
+		<script id="Cone-vertex-shader" type="x-shader/x-vertex">
+			attribute vec4 vPosition;
+			attribute vec3 vColor;
+			varying vec4 colorF;
+			uniform mat4 MV;
+			uniform mat4 P;
+			
+      void main()
+			{
+				gl_Position = P * MV * vPosition;
+				//gl_Position = vPosition;
+				colorF = vec4(vColor, 1.0);
+			}
+		</script>
+		
+    <script id = "Cone-fragment-shader" type="x-shader/x-fragment">
+			precision highp float;
+			varying vec4 fColor;
+			void main()
+			{
+				gl_FragColor = vec4(fColor);
+				//gl_FragColor = vec4(1.0, 0.0, gl_FrontFacing ? 1.0 : 0.0, 1.0);
+			}
+		</script>
+	
+  </head>
+	<body>
+		<canvas id="webgl-canvas" width="512" height="512" style="background-color: #bfff80></canvas>
+			<div>
+			speed 0% <input id="slider" type="range" min="0" max="100" step="10" value="10" />100%
+			<button id="xButton">Rotate X</button>
+			<button id="yButton">Rotate Y</button>
+			<input type="checkbox" id = "cBox" name = "rotspeed" value="0">stop rotating<br>
+		  </div>
+
 </body>
+
 </html>
