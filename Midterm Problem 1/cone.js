@@ -1,12 +1,25 @@
 var gl = null;
 var cone = null;
-var P, V; // P is for the projection transformation, and V is for the viewing transformation
-
-var far = 120;
-var near = 10;
-
+var M, V; // P is for the projection transformation, and V is for the viewing transformation
+var angle = 0;
+var angleD = 0;
+var S = undefined;
+M = undefined;
+V = undefined;
+var far = 10;
+var near = 1;
 var t = 0.0;
 var tDelta = 0.0001;
+var isMouseClickedDown = false;
+var lastLocationOfXMouse = null;
+var lastLocationOfYMouse = null;
+var valueInZ = -0.5*(near + far);
+var offset = [0,0,0];
+var axisOfRotation = undefined;
+var axisX = [1,0,0];
+var axizY = [0,1,0];
+var velocity = 1;
+var stopRotation = 0;
 
 
 function init() {
@@ -19,19 +32,88 @@ function init() {
         alert("Unable to setup WebGL");
         return;
     }
-
-    cone = new Cone(gl, 50);
+    document.getElementById("cBox").onClick = function()
+    {
+        if(document.getElementById("cBox").checked == true)
+        {
+            angleD = 0;
+            stopRotation = 1;
+        }
+        else
+        {
+            angleD = 2;
+            //stopRotation = 0;
+        }
+    }
     
-    cone.uniforms = 
+    document.getElementById("xButton").onClick = function()
+    {
+        axisOfRotation = axisX;
+    }
+    
+    document.getElementById("yButton").onClick = function()
+    {
+        axisOfRotation = axisY;
+    }
+    
+    document.getElementById("slider").onChange = function()
+    {
+        velocity = event.target.value / 10;
+    }
+    canvas.onmousedown = function handleMousePressedDown(evt)
+    {
+        isMouseClickedDown = true;
+        lastLocationOfXMouse = evt.clientX;
+        lastLocationOfYMouse = evt.clientY;
+        
+    }
+    
+    canvas.onmouseup = function handleMousePressedUp(evt)
+    {
+        isMouseClickedDown = false;
+        if(stopRotation)
+        {
+            angleD = 0;
+            return ;
+        }
+        
+    }
+    
+    canvas.onmouseup = function handleMouseMoved(evt)
+    {
+        if(!mouseDown)
+        {
+            if(stopRotation)
+            {
+                angleD = 0;
+                return ;
+            }
+        }
+        var newLocX = evt.clientX;
+        var newLocY = evt.clientY;
+
+        var changeInX = newLocX - lastLocationOfXMouse;
+        var changeInY = newLocY - lastLocationOfYMouse;
+        angleD = degreeToRadians(changeInX + changeInY) * 5 * Math.PI;
+        lastLocationOfXMouse = newLocX;
+        lastLocationOfYMouse = newLocY;   
+    }
+    
+    cone = new Cone(gl);
+    
+   /* cone.uniforms = 
     {
         P: gl.getUniformLocation(cone.program, "P");
         MV: gl.getUniformLocation(cone.program, "MV");
         
-    }
+    }*/
     
     //gl.clearColor( 1.0, 0.0, 1.0, 1.0 );
     gl.clearColor( 0.0, 0.0, 1.0, 1.0 );
-    render();
+    gl.enable(gl.DEPTH_TEST);
+    //render();
+    resize();
+    window.requestAnimationFrame(render);
 }
 
 function render() {
@@ -61,4 +143,10 @@ function render() {
     window.requestAnimationFrame(render);
 }
 
+function degreeToRadians(deg)
+{
+    return deg * Math.PI / 180;   
+}
+
 window.onload = init;
+window.resize = resize;
