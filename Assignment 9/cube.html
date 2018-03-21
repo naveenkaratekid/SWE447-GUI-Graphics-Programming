@@ -56,7 +56,7 @@ void main()
     gl_FragColor = vec4(minValue, 1.0);*/
     
     
-    // compute 1 pixel in texture coordinates.
+    // now compute 1 pixel in texture coordinates.
     vec2 onePixel = vec2(1.0, 1.0) / uTextureSize;
     // average the left, middle, and right pixels.
     /*gl_FragColor = (texture2D(uSampler, vTextureCoord) +
