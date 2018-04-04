@@ -11,6 +11,43 @@
 
     <script src="../Common/three.js"></script>
     <script src="moveCar.js"></script>
+    
+    <script>
+      var images = ["sky.png"];
+      var width = 1920;
+      var height = 1080;
+      var scene = new THREE.Scene();
+      var aspectRatio = width / height;
+      var txture = three.ImageUtils.loadTextureCube(images);
+      var cam = new THREE.PerspectiveCamera(150, aspectRatio, 0,1, 1000);
+      
+      function setupCar()
+      {
+          var loader = new three.OBJLoader();
+          var render = new three.WebGLRenderer();
+          render.setSize(window.innerWidth, window.innerHeight);
+          loader.load('teslaS.obj', function(object)
+          {
+              scene.add(object);   
+          });
+
+          var map = new THREE.TextureLoader().load( "sky.png" );
+          var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
+          var sprite = new THREE.Sprite( material );
+          scene.add( sprite );
+      }
+
+      function moveCar(object)
+      {
+
+      }
+      
+      
+      
+      
+    </script>
+    
+    
     <canvas id="webgl-canvas" width="1024" height="1024" style="background-color: #ffffff"></canvas>
   </body>
 </html>
