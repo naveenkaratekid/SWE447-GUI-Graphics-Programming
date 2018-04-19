@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - loaders - OBJ loader</title>
+		<title>Tesla Model S SWE 447</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=100.0, maximum-scale=100.0">
 		<style>
@@ -17,7 +17,8 @@
 
 	<body>
 		<div id="info">
-		<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - OBJLoader test
+        <h3>SWE447 - GUI &amp; Graphics Programming - Tesla Model S</h3>
+        
 		</div>
 
 		<script src="../Common/three.js"></script>
@@ -29,6 +30,7 @@
 			var mouseX = 0, mouseY = 0;
 			var windowHalfX = window.innerWidth / 2;
 			var windowHalfY = window.innerHeight / 2;
+			var tesla;
 			init();
 			animate();
 			function init() {
@@ -59,6 +61,7 @@
 				};
 				var onError = function ( xhr ) {
 				};
+				
 				var loader = new THREE.OBJLoader( manager );
 				loader.load( 'teslaS.obj', function ( object ) {
                     
@@ -69,12 +72,24 @@
                     } );
                     object.scale.x = 100;
                     object.scale.y = 100;
-                    object.scale.z = 100;
-					object.position.y = - 95;
+					object.scale.z = 100;
+					tesla = object;
+					//object.rotation.x = 20* Math.PI / 180;
+						
+                    document.addEventListener('mouseDrag', onDocumentMouseDrag, false);
+                    //object.position.y = -50;
+                    //object.position.x = -100;
 					scene.add( object );
 				}, onProgress, onError );
-				//
+                //
+				var pivotPt = new THREE.Group();
+				scene.add(pivotPt);
 				renderer = new THREE.WebGLRenderer();
+				var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+				var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+				var teslaMesh = new THREE.Mesh(geometry, material);
+				
+				
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
@@ -89,16 +104,86 @@
 				camera.updateProjectionMatrix();
 				renderer.setSize( window.innerWidth, window.innerHeight );
 			}
+
+			document.addEventListener("keydown", onDocumentKeyDown, false);
+			
+			function rotationOnPoint(obj, point, axis, theta, pointIsWorld)
+			{
+				/*if(pointIsWorld === undefined)
+				{
+					pointIsWorld = false;
+				}*/
+				pointIsWorld = (pointIsWorld === undefined) ? false: pointIsWorld;
+				if(pointIsWorld)
+				{
+					console.log(pointIsWorld);
+					obj.parent.localToWorld(obj.position); // compensating for world coordinate
+				}
+				obj.position.sub(point);
+				obj.position.applyAxisAngle(axis, theta);
+				obj.position.add(point);
+				console.log(obj.position)
+				console.trace();
+
+				if(pointIsWorld)
+				{
+					console.log("Undoing");
+					obj.parent.worldToLocal(obj.position); // undo compensating for world coordinate
+				}
+				obj.rotateOnAxis(axis, theta);
+
+			}
+
+			// This is supposed to validate which key is pressed for
+			function onDocumentKeyDown(event) 
+			{
+				var keyCode = event.which;
+				// up
+				if (keyCode == 32) {
+					console.log("Rotating");
+					//pivot.rotation.y += 0.01;
+					rotationOnPoint(tesla, new THREE.Vector3(600,0,0), new THREE.Vector3(0,1,0), 0.1, false);
+					//tesla.rotation.y += 1
+					// down
+				} else if (keyCode == 39) {
+					console.log("Moving right");
+					tesla.position.x += 5;
+					// left
+				} else if (keyCode == 37) {
+					console.log("Moving left");	
+					tesla.position.x -= 5;
+
+					// right
+				}
+			};	
+			
+
+
+			function onDocumentMouseDrag(event)
+			{
+				
+			}
+
 			function onDocumentMouseMove( event ) {
-				mouseX = ( event.clientX - windowHalfX ) / 2;
-				mouseY = ( event.clientY - windowHalfY ) / 2;
+               
+				mouseX = ( event.clientX - windowHalfX );
+				mouseY = ( event.clientY - windowHalfY );
 			}
 			//
 			function animate() {
 				requestAnimationFrame( animate );
 				render();
-			}
+            }
+            
+            this.degreeToRadian = function(degree)  
+             { 
+                 return degree*(Math.PI/180); 
+             }
+
 			function render() {
+               
+                //this.object.rotation.x += 0.5;
+                //object.rotation.x += degreeToRadian(90);
 				camera.position.x += ( mouseX - camera.position.x ) * .05;
 				camera.position.y += ( - mouseY - camera.position.y ) * .05;
 				camera.lookAt( scene.position );
