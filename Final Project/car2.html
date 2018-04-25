@@ -37,7 +37,7 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.z = 250;
+				camera.position.z = 500;
 				// scene
 				scene = new THREE.Scene();
 				var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
@@ -68,6 +68,7 @@
                     object.traverse( function ( child ) {
 						if ( child instanceof THREE.Mesh ) {
 							child.material.map = texture;
+							console.log("Child is : " + child.position.z);
 						}
                     } );
                     object.scale.x = 100;
@@ -75,7 +76,11 @@
 					object.scale.z = 100;
 					tesla = object;
 					//object.rotation.x = 20* Math.PI / 180;
-						
+					var worldPosition = new THREE.Vector3().setFromMatrixPosition(object.matrixWorld);
+					console.log("X: " + object.position.x + " " + "Y: " + object.position.y + " " + "Z: " + object.position.y);	
+					
+					tesla.localToWorld(worldPosition);	
+					console.log(worldPosition);
                     document.addEventListener('mouseDrag', onDocumentMouseDrag, false);
                     //object.position.y = -50;
                     //object.position.x = -100;
@@ -109,6 +114,8 @@
 			
 			function rotationOnPoint(obj, point, axis, theta, pointIsWorld)
 			{
+				console.log(obj.quaternion);
+				//obj.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1,0));
 				/*if(pointIsWorld === undefined)
 				{
 					pointIsWorld = false;
@@ -123,6 +130,7 @@
 				obj.position.applyAxisAngle(axis, theta);
 				obj.position.add(point);
 				console.log(obj.position)
+				console.log(camera.position);
 				console.trace();
 
 				if(pointIsWorld)
@@ -139,17 +147,32 @@
 			{
 				var keyCode = event.which;
 				// up
-				if (keyCode == 32) {
+				if (keyCode == 32) 
+				{
 					console.log("Rotating");
 					//pivot.rotation.y += 0.01;
-					rotationOnPoint(tesla, new THREE.Vector3(600,0,0), new THREE.Vector3(0,1,0), 0.1, false);
-					//tesla.rotation.y += 1
+					rotationOnPoint(tesla, new THREE.Vector3(100, 0, -500), new THREE.Vector3(0,1,0), 0.05, false);
+					//tesla.rotation.y += 0.1;
+					camera.rotateOnAxis(0,1,0);
 					// down
-				} else if (keyCode == 39) {
+				} 
+				else if (keyCode == 39) 
+				{
 					console.log("Moving right");
 					tesla.position.x += 5;
 					// left
-				} else if (keyCode == 37) {
+				}
+				else if(keyCode == 38)
+				{
+					console.log("moving away from you");
+					tesla.position.z -= 5;
+				}
+				else if(keyCode == 40)
+				{
+					console.log("moving towards you");
+					tesla.position.z += 5;	
+				}
+				else if (keyCode == 37) {
 					console.log("Moving left");	
 					tesla.position.x -= 5;
 
@@ -184,9 +207,10 @@
                
                 //this.object.rotation.x += 0.5;
                 //object.rotation.x += degreeToRadian(90);
-				camera.position.x += ( mouseX - camera.position.x ) * .05;
-				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-				camera.lookAt( scene.position );
+				//camera.position.x += ( mouseX - camera.position.x ) * .05;
+				//camera.position.y += ( - mouseY - camera.position.y ) * .05;
+				//camera.lookAt( scene.position );
+				camera.lookAt( new THREE.Vector3(0,0,0));
 				renderer.render( scene, camera );
 			}
 		</script>
